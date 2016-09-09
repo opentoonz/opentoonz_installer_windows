@@ -5,8 +5,8 @@ call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
 rem InstallerWindows を opentoonz のディレクトリにクローンしておくこと
 pushd ..\toonz
 
-rmdir /S /Q build
-rmdir /S /Q build_srv
+rem rmdir /S /Q build
+rem rmdir /S /Q build_srv
 
 rem Qt5.6.0 by default
 if "%~1"=="" (
@@ -30,7 +30,7 @@ echo "%QT_REV%"
 rem http://ftp.yz.yamagata-u.ac.jp/pub/qtproject/archive/qt/5.6/5.6.0/qt-opensource-windows-x86-msvc2015_64-5.6.0.exe
 rem "C:\Qt\Qt5.6.0" にインストールしておく
 
-mkdir build
+mkdir -p build
 pushd build
 @echo on
 cmake ../sources -G "Visual Studio 14 Win64" -DQT_PATH="C:/Qt/Qt%QT_VER%.%QT_REV%/%QT_VER%/msvc2015_64"
@@ -48,7 +48,7 @@ rem 32bit 版のビルド (t32bitsrv.exe, image.dll, tnzcore.dll 用)
 rem http://ftp.yz.yamagata-u.ac.jp/pub/qtproject/archive/qt/5.6/5.6.0/qt-opensource-windows-x86-msvc2015-5.6.0.exe
 rem "C:\Qt\Qt5.6.0" にインストールしておく
 if DEFINED IS_32BIT (
-    mkdir build_srv
+    mkdir -p build_srv
     pushd build_srv
     @echo on
     cmake ../sources -G "Visual Studio 14" -DQT_PATH="C:/Qt/Qt%QT_VER%.%QT_REV%/%QT_VER%/msvc2015"
