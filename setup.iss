@@ -44,6 +44,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Dirs]
 Name: "{code:GetGeneralDir}\plugins"; Flags: uninsneveruninstall
 Name: "{code:GetGeneralDir}\toonzfarm"; Flags: uninsneveruninstall
+Name: "{code:GetGeneralDir}\projects"; Flags: uninsneveruninstall
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
