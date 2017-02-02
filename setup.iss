@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "OpenToonz"
-#define MyAppVersion "1.1.0"
+#define MyAppVersion "1.1.2"
 #define MyAppPublisher "DWANGO Co., Ltd."
 #define MyAppURL "https://opentoonz.github.io/"
 #define MyAppExeName "OpenToonz_1.1.exe"
