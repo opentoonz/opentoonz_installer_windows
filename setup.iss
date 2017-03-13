@@ -75,22 +75,27 @@ Name: {code:GetGeneralDir}; Flags: uninsneveruninstall
 en.GeneralDirPageTitle=Choose Destination Location for Stuff Folder
 en.GeneralDirPageDescription=Select the folder where setup will install the OpenToonz Stuff folder containing various setting files
 en.GeneralDirPageLabel=Install the OpenToonz Stuff folder to:
+en.OverwriteStuffCheckBoxLabel=Overwrite all setting files in the Stuff folder except user's personal settings 
 
 jp.GeneralDirPageTitle=Stuffフォルダのインストール先の選択
 jp.GeneralDirPageDescription=各種設定が保存されるStuffフォルダのインストール先を選択してください
 jp.GeneralDirPageLabel=Stuffフォルダのインストール先:
+jp.OverwriteStuffCheckBoxLabel=ユーザーの個人設定以外のStuffフォルダ内の設定ファイルを全て上書きする
 
 fr.GeneralDirPageTitle=Choose Destination Location for Stuff Folder
 fr.GeneralDirPageDescription=Select the folder where setup will install the OpenToonz Stuff folder containing various setting files
 fr.GeneralDirPageLabel=Install the OpenToonz Stuff folder to:
+fr.OverwriteStuffCheckBoxLabel=Overwrite all setting files in the Stuff folder except user's personal settings 
 
 it.GeneralDirPageTitle=Choose Destination Location for Stuff Folder
 it.GeneralDirPageDescription=Select the folder where setup will install the OpenToonz Stuff folder containing various setting files
 it.GeneralDirPageLabel=Install the OpenToonz Stuff folder to:
+it.OverwriteStuffCheckBoxLabel=Overwrite all setting files in the Stuff folder except user's personal settings
 
 [Code]
 var
   GeneralDirPage: TInputDirWizardPage;
+  OverwriteStuffCheckBox: TNewCheckBox;
 
 procedure InitializeWizard;
 begin
@@ -102,9 +107,20 @@ begin
     '');
   GeneralDirPage.Add('');
   GeneralDirPage.Values[0] := 'C:\OpenToonz 1.1 stuff';
+  OverwriteStuffCheckBox := TNewCheckBox.Create(GeneralDirPage);
+  OverwriteStuffCheckBox.Caption := CustomMessage('OverwriteStuffCheckBoxLabel');
+  OverwriteStuffCheckBox.Parent := GeneralDirPage.Surface;
+  OverwriteStuffCheckBox.Top := 70;
+  OverwriteStuffCheckBox.Width := GeneralDirPage.SurfaceWidth;
+  OverwriteStuffCheckBox.Checked := False;
 end;
 
 function GetGeneralDir(Param: String): String;
 begin
   Result := GeneralDirPage.Values[0];
+end;
+
+function IsOverwiteStuffCheckBoxChecked: Boolean;
+begin
+  Result := OverwriteStuffCheckBox.Checked;
 end;
