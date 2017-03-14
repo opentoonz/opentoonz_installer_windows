@@ -15,7 +15,10 @@ print
 
 for path, dirs, files in os.walk(ur'stuff'):
     for file in files:
-        print >> fout, """Source: "%s"; DestDir: "{code:GetGeneralDir}%s"; Flags: onlyifdoesntexist uninsneveruninstall""" % (
+        print >> fout, """Source: "%s"; DestDir: "{code:GetGeneralDir}%s"; Flags: uninsneveruninstall; Check: IsOverwiteStuffCheckBoxChecked""" % (
+            os.path.join(path, file),
+            path[len("stuff"):])
+        print >> fout, """Source: "%s"; DestDir: "{code:GetGeneralDir}%s"; Flags: onlyifdoesntexist uninsneveruninstall; Check: not IsOverwiteStuffCheckBoxChecked""" % (
             os.path.join(path, file),
             path[len("stuff"):])
 
