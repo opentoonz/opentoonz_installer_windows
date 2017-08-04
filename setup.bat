@@ -75,6 +75,7 @@ copy /Y ..\toonz\build\Release\*.exe program
 copy /Y ..\toonz\build\Release\*.dll program
 copy /Y ..\thirdparty\glew\glew-1.9.0\bin\64bit\*.dll program
 copy /Y ..\thirdparty\glut\3.7.6\lib\*.dll program
+copy /Y ..\thirdparty\libmypaint\dist\64\*.dll program
 copy /Y "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\redist\x64\Microsoft.VC140.CRT\*.dll" program
 copy /Y "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\redist\x64\Microsoft.VC140.OpenMP\*.dll" program
 @echo on
