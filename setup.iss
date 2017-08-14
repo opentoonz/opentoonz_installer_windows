@@ -110,7 +110,7 @@ begin
   OverwriteStuffCheckBox := TNewCheckBox.Create(GeneralDirPage);
   OverwriteStuffCheckBox.Caption := CustomMessage('OverwriteStuffCheckBoxLabel');
   OverwriteStuffCheckBox.Parent := GeneralDirPage.Surface;
-  OverwriteStuffCheckBox.Top := 70;
+  OverwriteStuffCheckBox.Top := ScaleY(70);
   OverwriteStuffCheckBox.Width := GeneralDirPage.SurfaceWidth;
   OverwriteStuffCheckBox.Checked := False;
 end;
