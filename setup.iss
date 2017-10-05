@@ -112,7 +112,7 @@ begin
   OverwriteStuffCheckBox.Parent := GeneralDirPage.Surface;
   OverwriteStuffCheckBox.Top := ScaleY(70);
   OverwriteStuffCheckBox.Width := GeneralDirPage.SurfaceWidth;
-  OverwriteStuffCheckBox.Checked := False;
+  OverwriteStuffCheckBox.Checked := True;
 end;
 
 function GetGeneralDir(Param: String): String;
