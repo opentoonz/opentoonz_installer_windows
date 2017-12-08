@@ -2,10 +2,10 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "OpenToonz"
-#define MyAppVersion "1.1.2"
+#define MyAppVersion "1.2.0"
 #define MyAppPublisher "DWANGO Co., Ltd."
 #define MyAppURL "https://opentoonz.github.io/"
-#define MyAppExeName "OpenToonz_1.1.exe"
+#define MyAppExeName "OpenToonz_1.2.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -19,8 +19,8 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={pf}\OpenToonz 1.1
-DefaultGroupName=OpenToonz 1.1
+DefaultDirName={pf}\OpenToonz 1.2
+DefaultGroupName=OpenToonz 1.2
 AllowNoIcons=yes
 LicenseFile=license.rtf
 OutputBaseFilename=OpenToonzSetup
@@ -57,16 +57,16 @@ Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChang
 [Registry]
 Root: HKLM; Subkey: "Software\OpenToonz"; Flags: uninsdeletekeyifempty
 Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; Flags: uninsdeletekeyifempty
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.1"; Flags: uninsdeletekey
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.1"; ValueType: string; ValueName: "TOONZROOT"; ValueData: "{code:GetGeneralDir}"
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.1"; ValueType: string; ValueName: "TOONZPROJECTS"; ValueData: "{code:GetGeneralDir}\projects"
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.1"; ValueType: string; ValueName: "TOONZCACHEROOT"; ValueData: "{code:GetGeneralDir}\cache"
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.1"; ValueType: string; ValueName: "TOONZCONFIG"; ValueData: "{code:GetGeneralDir}\config"
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.1"; ValueType: string; ValueName: "TOONZPROFILES"; ValueData: "{code:GetGeneralDir}\profiles"
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.1"; ValueType: string; ValueName: "TOONZFXPRESETS"; ValueData: "{code:GetGeneralDir}\fxs"
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.1"; ValueType: string; ValueName: "TOONZLIBRARY"; ValueData: "{code:GetGeneralDir}\library"
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.1"; ValueType: string; ValueName: "TOONZSTUDIOPALETTE"; ValueData: "{code:GetGeneralDir}\studiopalette"
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.1"; ValueType: string; ValueName: "FARMROOT"; ValueData: ""
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "TOONZROOT"; ValueData: "{code:GetGeneralDir}"
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "TOONZPROJECTS"; ValueData: "{code:GetGeneralDir}\projects"
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "TOONZCACHEROOT"; ValueData: "{code:GetGeneralDir}\cache"
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "TOONZCONFIG"; ValueData: "{code:GetGeneralDir}\config"
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "TOONZPROFILES"; ValueData: "{code:GetGeneralDir}\profiles"
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "TOONZFXPRESETS"; ValueData: "{code:GetGeneralDir}\fxs"
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "TOONZLIBRARY"; ValueData: "{code:GetGeneralDir}\library"
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "TOONZSTUDIOPALETTE"; ValueData: "{code:GetGeneralDir}\studiopalette"
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "FARMROOT"; ValueData: ""
 
 [Dirs]
 Name: {code:GetGeneralDir}; Flags: uninsneveruninstall
@@ -106,7 +106,7 @@ begin
     False,
     '');
   GeneralDirPage.Add('');
-  GeneralDirPage.Values[0] := 'C:\OpenToonz 1.1 stuff';
+  GeneralDirPage.Values[0] := 'C:\OpenToonz 1.2 stuff';
   OverwriteStuffCheckBox := TNewCheckBox.Create(GeneralDirPage);
   OverwriteStuffCheckBox.Caption := CustomMessage('OverwriteStuffCheckBoxLabel');
   OverwriteStuffCheckBox.Parent := GeneralDirPage.Surface;

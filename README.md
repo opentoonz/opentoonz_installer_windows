@@ -8,7 +8,7 @@
 
 ### InstallerWindows/program
 
-この中身がProgram Filesにインストールされます。64ビット版をビルドした.exeや.dllをコピーします。Qt関係のDLLはビルドしたOpenToonz_1.1.exeをwindeployqtに渡すと集めてくれます。
+この中身がProgram Filesにインストールされます。64ビット版をビルドした.exeや.dllをコピーします。Qt関係のDLLはビルドしたOpenToonz_1.2.exeをwindeployqtに渡すと集めてくれます。
 
 glew32.dllとglut64.dllは、それぞれOpenToonzリポジトリのthirdparty/glew/glew-1.9.0/bin/64bit/と/thirdparty/glut/3.7.6/lib/にあります。
 
