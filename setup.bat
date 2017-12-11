@@ -8,14 +8,14 @@ pushd ..\toonz
 rem rmdir /S /Q build
 rem rmdir /S /Q build_srv
 
-rem Qt5.6.0 by default
+rem Qt5.9.2 by default
 if "%~1"=="" (
-    set QT_VER=5.6
+    set QT_VER=5.9
 ) else (
     set QT_VER=%1
 )
 if "%~2"=="" (
-    set QT_REV=0
+    set QT_REV=2
 ) else (
     set QT_REV=%2
 )
@@ -27,8 +27,8 @@ if "%~3"=="32bit" (
 echo "%QT_VER%"
 echo "%QT_REV%"
 
-rem http://ftp.yz.yamagata-u.ac.jp/pub/qtproject/archive/qt/5.6/5.6.0/qt-opensource-windows-x86-msvc2015_64-5.6.0.exe
-rem "C:\Qt\Qt5.6.0" にインストールしておく
+rem http://ftp.yz.yamagata-u.ac.jp/pub/qtproject/archive/qt/5.9/5.9.2/qt-opensource-windows-x86-5.9.2.exe
+rem "C:\Qt\Qt5.9.2" にインストールしておく
 
 mkdir -p build
 pushd build
@@ -45,8 +45,8 @@ popd
 rem build
 
 rem 32bit 版のビルド (t32bitsrv.exe, image.dll, tnzcore.dll 用)
-rem http://ftp.yz.yamagata-u.ac.jp/pub/qtproject/archive/qt/5.6/5.6.0/qt-opensource-windows-x86-msvc2015-5.6.0.exe
-rem "C:\Qt\Qt5.6.0" にインストールしておく
+rem http://ftp.yz.yamagata-u.ac.jp/pub/qtproject/archive/qt/5.9/5.9.2/qt-opensource-windows-x86-5.9.2.exe
+rem "C:\Qt\Qt5.9.2" にインストールしておく
 if DEFINED IS_32BIT (
     mkdir -p build_srv
     pushd build_srv
@@ -79,7 +79,7 @@ copy /Y ..\thirdparty\libmypaint\dist\64\*.dll program
 copy /Y "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\redist\x64\Microsoft.VC140.CRT\*.dll" program
 copy /Y "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\redist\x64\Microsoft.VC140.OpenMP\*.dll" program
 @echo on
-"C:\Qt\Qt%QT_VER%.%QT_REV%\%QT_VER%\msvc2015_64\bin\windeployqt.exe" --release --dir program program\OpenToonz_1.1.exe
+"C:\Qt\Qt%QT_VER%.%QT_REV%\%QT_VER%\msvc2015_64\bin\windeployqt.exe" --release --dir program program\OpenToonz_1.2.exe
 @echo off
 if errorlevel 1 exit /b 1
 
