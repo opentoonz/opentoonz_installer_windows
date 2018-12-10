@@ -79,7 +79,7 @@ copy /Y ..\thirdparty\libmypaint\dist\64\*.dll program
 copy /Y "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\redist\x64\Microsoft.VC140.CRT\*.dll" program
 copy /Y "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\redist\x64\Microsoft.VC140.OpenMP\*.dll" program
 @echo on
-"C:\Qt\Qt%QT_VER%.%QT_REV%\%QT_VER%\msvc2015_64\bin\windeployqt.exe" --release --dir program program\OpenToonz_1.2.exe
+"C:\Qt\Qt%QT_VER%.%QT_REV%\%QT_VER%\msvc2015_64\bin\windeployqt.exe" --release --dir program program\OpenToonz.exe
 @echo off
 if errorlevel 1 exit /b 1
 

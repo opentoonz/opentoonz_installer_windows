@@ -2,16 +2,17 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "OpenToonz"
-#define MyAppVersion "1.2.0"
+#define MyAppVersion "1.2.1"
 #define MyAppPublisher "DWANGO Co., Ltd."
 #define MyAppURL "https://opentoonz.github.io/"
-#define MyAppExeName "OpenToonz_1.2.exe"
+#define MyAppExeName "OpenToonz.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{D9A9B1A3-9370-4BE9-9C8F-7B52EEECB973}
+; AppId={{D9A9B1A3-9370-4BE9-9C8F-7B52EEECB973} (until v1.2.1)
+AppId={{DF519282-600D-4E03-9190-6046329B1CB4}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -19,8 +20,8 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={pf}\OpenToonz 1.2
-DefaultGroupName=OpenToonz 1.2
+DefaultDirName={pf}\OpenToonz
+DefaultGroupName=OpenToonz
 AllowNoIcons=yes
 LicenseFile=license.rtf
 OutputBaseFilename=OpenToonzSetup
@@ -56,17 +57,16 @@ Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChang
 
 [Registry]
 Root: HKLM; Subkey: "Software\OpenToonz"; Flags: uninsdeletekeyifempty
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; Flags: uninsdeletekeyifempty
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; Flags: uninsdeletekey
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "TOONZROOT"; ValueData: "{code:GetGeneralDir}"
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "TOONZPROJECTS"; ValueData: "{code:GetGeneralDir}\projects"
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "TOONZCACHEROOT"; ValueData: "{code:GetGeneralDir}\cache"
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "TOONZCONFIG"; ValueData: "{code:GetGeneralDir}\config"
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "TOONZPROFILES"; ValueData: "{code:GetGeneralDir}\profiles"
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "TOONZFXPRESETS"; ValueData: "{code:GetGeneralDir}\fxs"
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "TOONZLIBRARY"; ValueData: "{code:GetGeneralDir}\library"
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "TOONZSTUDIOPALETTE"; ValueData: "{code:GetGeneralDir}\studiopalette"
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz\1.2"; ValueType: string; ValueName: "FARMROOT"; ValueData: ""
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; ValueType: string; ValueName: "TOONZROOT"; ValueData: "{code:GetGeneralDir}"
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; ValueType: string; ValueName: "TOONZPROJECTS"; ValueData: "{code:GetGeneralDir}\projects"
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; ValueType: string; ValueName: "TOONZCACHEROOT"; ValueData: "{code:GetGeneralDir}\cache"
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; ValueType: string; ValueName: "TOONZCONFIG"; ValueData: "{code:GetGeneralDir}\config"
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; ValueType: string; ValueName: "TOONZPROFILES"; ValueData: "{code:GetGeneralDir}\profiles"
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; ValueType: string; ValueName: "TOONZFXPRESETS"; ValueData: "{code:GetGeneralDir}\fxs"
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; ValueType: string; ValueName: "TOONZLIBRARY"; ValueData: "{code:GetGeneralDir}\library"
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; ValueType: string; ValueName: "TOONZSTUDIOPALETTE"; ValueData: "{code:GetGeneralDir}\studiopalette"
+Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; ValueType: string; ValueName: "FARMROOT"; ValueData: ""
 
 [Dirs]
 Name: {code:GetGeneralDir}; Flags: uninsneveruninstall
@@ -106,7 +106,7 @@ begin
     False,
     '');
   GeneralDirPage.Add('');
-  GeneralDirPage.Values[0] := 'C:\OpenToonz 1.2 stuff';
+  GeneralDirPage.Values[0] := 'C:\OpenToonz stuff';
   OverwriteStuffCheckBox := TNewCheckBox.Create(GeneralDirPage);
   OverwriteStuffCheckBox.Caption := CustomMessage('OverwriteStuffCheckBoxLabel');
   OverwriteStuffCheckBox.Parent := GeneralDirPage.Surface;
