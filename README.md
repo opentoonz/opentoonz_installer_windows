@@ -8,17 +8,17 @@
 
 ### InstallerWindows/program
 
-この中身がProgram Filesにインストールされます。64ビット版をビルドした.exeや.dllをコピーします。Qt関係のDLLはビルドしたOpenToonz_1.2.exeをwindeployqtに渡すと集めてくれます。
+この中身がProgram Filesにインストールされます。64ビット版をビルドした.exeや.dllをコピーします。Qt関係のDLLはビルドしたOpenToonz.exeをwindeployqtに渡すと集めてくれます。
 
 glew32.dllとglut64.dllは、それぞれOpenToonzリポジトリのthirdparty/glew/glew-1.9.0/bin/64bit/と/thirdparty/glut/3.7.6/lib/にあります。
 
-msvcp120.dllとmsvcr120.dllはC:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\redist\x64\Microsoft.VC120.CRTにあります。
+msvcp140.dllとmsvcr140.dllはC:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\redist\x64\Microsoft.VC140.CRTにあります。
 
 ### InstallerWindows/program/srv
 
 **x86用にビルドした**t32bitsrv.exe, image.dll, tnzcore.dllをコピーします。Qt5Core.dll, Qt5Network.dllはQtの32版からコピー。
 
-msvcp120.dllとmsvcr120.dllはC:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\redist\x86\Microsoft.VC120.CRTにあります。
+msvcp140.dllとmsvcr140.dllはC:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\redist\x86\Microsoft.VC140.CRTにあります。
 
 ### InstallerWindows/stuff
 

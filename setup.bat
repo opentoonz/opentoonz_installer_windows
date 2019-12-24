@@ -33,7 +33,7 @@ rem "C:\Qt\Qt5.9.2" にインストールしておく
 mkdir -p build
 pushd build
 @echo on
-cmake ../sources -G "Visual Studio 14 Win64" -DQT_PATH="C:/Qt/Qt%QT_VER%.%QT_REV%/%QT_VER%/msvc2015_64"
+cmake ../sources -G "Visual Studio 14 Win64" -DQT_PATH="C:/Qt/Qt%QT_VER%.%QT_REV%/%QT_VER%/msvc2015_64" -DWITH_STOPMOTION=ON -DOpenCV_DIR="C:/programs/opencv/build"
 rem cmake --build . --config Release
 @echo off
 if errorlevel 1 exit /b 1
@@ -78,6 +78,9 @@ copy /Y ..\thirdparty\glut\3.7.6\lib\*.dll program
 copy /Y ..\thirdparty\libmypaint\dist\64\*.dll program
 copy /Y "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\redist\x64\Microsoft.VC140.CRT\*.dll" program
 copy /Y "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\redist\x64\Microsoft.VC140.OpenMP\*.dll" program
+copy /Y "C:\programs\EDSDK131020CD\Windows\EDSDK_64\Dll\EDSDK.dll" program
+copy /Y "C:\programs\libjpeg-turbo64\bin\turbojpeg.dll" program
+copy /Y "C:\programs\opencv\build\x64\vc14\bin\opencv_world412.dll" program
 @echo on
 "C:\Qt\Qt%QT_VER%.%QT_REV%\%QT_VER%\msvc2015_64\bin\windeployqt.exe" --release --dir program program\OpenToonz.exe
 @echo off
