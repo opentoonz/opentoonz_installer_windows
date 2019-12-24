@@ -60,7 +60,6 @@ Root: HKLM; Subkey: "Software\OpenToonz"; Flags: uninsdeletekeyifempty
 Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; Flags: uninsdeletekey
 Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; ValueType: string; ValueName: "TOONZROOT"; ValueData: "{code:GetGeneralDir}"
 Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; ValueType: string; ValueName: "TOONZPROJECTS"; ValueData: "{code:GetGeneralDir}\projects"
-Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; ValueType: string; ValueName: "TOONZCACHEROOT"; ValueData: "{code:GetGeneralDir}\cache"
 Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; ValueType: string; ValueName: "TOONZCONFIG"; ValueData: "{code:GetGeneralDir}\config"
 Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; ValueType: string; ValueName: "TOONZPROFILES"; ValueData: "{code:GetGeneralDir}\profiles"
 Root: HKLM; Subkey: "Software\OpenToonz\OpenToonz"; ValueType: string; ValueName: "TOONZFXPRESETS"; ValueData: "{code:GetGeneralDir}\fxs"
