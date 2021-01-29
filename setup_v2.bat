@@ -48,7 +48,7 @@ if DEFINED IS_32BIT (
     mkdir -p build_srv
     pushd build_srv
     @echo on
-    cmake ../sources -G "Visual Studio 16 2019" -AWin32 -DQT_PATH="C:/Qt/%QT_VER%.%QT_REV%/msvc2019"
+    cmake ../sources -G "Visual Studio 16 2019" -AWin32 -DQT_PATH="C:/Qt/%QT_VER%.%QT_REV%/msvc2019" -DBOOST_ROOT="C:/boost/boost_1_75_0
     @echo off
     if errorlevel 1 exit /b 1
     MSBuild /m OpenToonz.sln /t:t32bitsrv /p:Configuration=Release
