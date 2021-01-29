@@ -32,12 +32,7 @@ rem "C:\Qt\5.15.2" にインストールしておく
 mkdir -p build
 pushd build
 @echo on
-cmake ../sources -G "Visual Studio 16 2019" \
-    -Ax64 \
-    -DQT_PATH="C:/Qt/%QT_VER%.%QT_REV%/msvc2019_64" \
-    -DOpenCV_DIR="C:/opencv/build" \
-    -DBOOST_ROOT="C:/boost/boost_1_75_0" \
-    -DWITH_CANON=ON
+cmake ../sources -G "Visual Studio 16 2019" -Ax64 -DQT_PATH="C:/Qt/%QT_VER%.%QT_REV%/msvc2019_64" -DOpenCV_DIR="C:/opencv/build" -DBOOST_ROOT="C:/boost/boost_1_75_0" -DWITH_CANON=ON
 rem cmake --build . --config Release
 @echo off
 if errorlevel 1 exit /b 1
@@ -53,9 +48,7 @@ if DEFINED IS_32BIT (
     mkdir -p build_srv
     pushd build_srv
     @echo on
-    cmake ../sources -G "Visual Studio 16 2019" \
-        -AWin32 \
-        -DQT_PATH="C:/Qt/%QT_VER%.%QT_REV%/msvc2019"
+    cmake ../sources -G "Visual Studio 16 2019" -AWin32 -DQT_PATH="C:/Qt/%QT_VER%.%QT_REV%/msvc2019"
     @echo off
     if errorlevel 1 exit /b 1
     MSBuild /m OpenToonz.sln /t:t32bitsrv /p:Configuration=Release
