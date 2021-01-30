@@ -78,7 +78,7 @@ copy /Y "C:\EDSDK\Windows\EDSDK_64\Dll\EDSDK.dll" program
 copy /Y "C:\libjpeg-turbo64\bin\turbojpeg.dll" program
 copy /Y "C:\opencv\build\x64\vc15\bin\opencv_world451.dll" program
 @echo on
-"C:/Qt/%QT_VER%.%QT_REV%/msvc2019_64\bin\windeployqt.exe" --release --dir program program\OpenToonz.exe
+"C:\Qt\%QT_VER%.%QT_REV%\msvc2019_64\bin\windeployqt.exe" --release --dir program program\OpenToonz.exe
 @echo off
 if errorlevel 1 exit /b 1
 
@@ -89,10 +89,10 @@ mkdir program\srv
     copy /Y ..\toonz\build_srv\Release\*.dll program\srv
     copy /Y "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\14.28.29325\x86\Microsoft.VC142.CRT\*.dll" program\srv
     @echo on
-    "C:/Qt/%QT_VER%.%QT_REV%/msvc2019\bin\windeployqt.exe" --release --dir program\srv program\srv\t32bitsrv.exe
+    "C:\Qt\%QT_VER%.%QT_REV%\msvc2019\bin\windeployqt.exe" --release --dir program\srv program\srv\t32bitsrv.exe
     @echo off
     rem 25/11/2016 for unknown reasons, QtGui.dll is not copied to srv with windeployqt
-    rem copy /Y "C:\Qt\Qt%QT_VER%.%QT_REV%\%QT_VER%\msvc2015\bin\Qt5Gui.dll" program\srv\Qt5Gui.dll
+    copy /Y "C:\Qt\%QT_VER%.%QT_REV%\msvc2019\bin\Qt5Gui.dll" program\srv\Qt5Gui.dll
     if errorlevel 1 exit /b 1
 )
 
