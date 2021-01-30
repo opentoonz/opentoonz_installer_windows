@@ -102,7 +102,7 @@ xcopy /YE ..\stuff stuff
 xcopy /YE ..\toonz\build\loc stuff\config\loc
 for /R %%F in (.gitkeep) do del "%%F"
 
-python filelist.py
+python filelist_python3.py
 "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" setup.iss
 if errorlevel 1 exit /b 1
 
