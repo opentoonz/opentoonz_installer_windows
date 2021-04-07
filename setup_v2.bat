@@ -1,7 +1,5 @@
 @echo off
 
-call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
-
 rem InstallerWindows を opentoonz のディレクトリにクローンしておくこと
 pushd ..\toonz
 
@@ -53,7 +51,6 @@ rem build
 
 rem 32bit 版のビルド (t32bitsrv.exe, image.dll, tnzcore.dll 用)
 if DEFINED IS_32BIT (
-    call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsamd64_x86.bat"
     mkdir -p build_srv
     pushd build_srv
     @echo on
@@ -64,7 +61,6 @@ if DEFINED IS_32BIT (
     if errorlevel 1 exit /b 1
     popd
     rem build_srv
-    call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
 )
 popd
 
@@ -75,6 +71,7 @@ rmdir /S /Q program
 rmdir /S /Q stuff
 rmdir /S /Q Output
 
+call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
 rem Program Files
 mkdir program
 copy /Y ..\toonz\build\Release\*.exe program
