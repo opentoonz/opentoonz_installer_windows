@@ -53,6 +53,7 @@ rem build
 
 rem 32bit 版のビルド (t32bitsrv.exe, image.dll, tnzcore.dll 用)
 if DEFINED IS_32BIT (
+    call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsamd64_x86.bat"
     mkdir -p build_srv
     pushd build_srv
     @echo on
@@ -63,6 +64,7 @@ if DEFINED IS_32BIT (
     if errorlevel 1 exit /b 1
     popd
     rem build_srv
+    call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
 )
 popd
 
@@ -96,7 +98,8 @@ if errorlevel 1 exit /b 1
 
 rem
 if DEFINED IS_32BIT (
-mkdir program\srv
+    call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsamd64_x86.bat"
+    mkdir program\srv
     copy /Y ..\toonz\build_srv\Release\*.exe program\srv
     copy /Y ..\toonz\build_srv\Release\*.dll program\srv
     copy /Y "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\14.28.29325\x86\Microsoft.VC142.CRT\*.dll" program\srv
@@ -106,6 +109,7 @@ mkdir program\srv
     rem 25/11/2016 for unknown reasons, QtGui.dll is not copied to srv with windeployqt
     copy /Y "C:\Qt\%QT_VER%.%QT_REV%\msvc2019\bin\Qt5Gui.dll" program\srv\Qt5Gui.dll
     if errorlevel 1 exit /b 1
+    call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
 )
 
 rem Stuff Dir
