@@ -99,7 +99,7 @@ if DEFINED IS_32BIT (
     mkdir program\srv
     copy /Y ..\toonz\build_srv\Release\*.exe program\srv
     copy /Y ..\toonz\build_srv\Release\*.dll program\srv
-    copy /Y "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\14.28.29325\x86\Microsoft.VC142.CRT\*.dll" program\srv
+    rem copy /Y "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\14.28.29325\x86\Microsoft.VC142.CRT\*.dll" program\srv
     @echo on
     "C:\Qt\%QT_VER%.%QT_REV%\msvc2019\bin\windeployqt.exe" --release --dir program\srv program\srv\t32bitsrv.exe
     @echo off
