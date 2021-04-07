@@ -1,6 +1,6 @@
 @echo off
 
-call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\vcvarsall.bat"
+call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat"
 
 rem InstallerWindows を opentoonz のディレクトリにクローンしておくこと
 pushd ..\toonz
@@ -80,8 +80,8 @@ copy /Y ..\toonz\build\Release\*.dll program
 copy /Y ..\thirdparty\glew\glew-1.9.0\bin\64bit\*.dll program
 copy /Y ..\thirdparty\glut\3.7.6\lib\*.dll program
 copy /Y ..\thirdparty\libmypaint\dist\64\*.dll program
-copy /Y "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\14.28.29325\x64\Microsoft.VC142.CRT\*.dll" program
-copy /Y "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\14.28.29325\x64\Microsoft.VC142.OpenMP\*.dll" program
+rem copy /Y "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\14.28.29325\x64\Microsoft.VC142.CRT\*.dll" program
+rem copy /Y "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\14.28.29325\x64\Microsoft.VC142.OpenMP\*.dll" program
 copy /Y "C:\EDSDK\Windows\EDSDK_64\Dll\EDSDK.dll" program
 copy /Y "C:\libjpeg-turbo64\bin\turbojpeg.dll" program
 copy /Y "C:\opencv\build\x64\vc15\bin\opencv_world451.dll" program
