@@ -86,7 +86,11 @@ copy /Y "C:\EDSDK\Windows\EDSDK_64\Dll\EDSDK.dll" program
 copy /Y "C:\libjpeg-turbo64\bin\turbojpeg.dll" program
 copy /Y "C:\opencv\build\x64\vc15\bin\opencv_world451.dll" program
 @echo on
-"C:\Qt\%QT_VER%.%QT_REV%\msvc2019_64\bin\windeployqt.exe" --release --dir program program\OpenToonz.exe
+if DEFINED WITH_WINTAB (
+    "C:\Qt\%QT_VER%.%QT_REV%_wintab\msvc2019_64\bin\windeployqt.exe" --release --dir program program\OpenToonz.exe
+) ELSE (
+    "C:\Qt\%QT_VER%.%QT_REV%\msvc2019_64\bin\windeployqt.exe" --release --dir program program\OpenToonz.exe
+)
 @echo off
 if errorlevel 1 exit /b 1
 
