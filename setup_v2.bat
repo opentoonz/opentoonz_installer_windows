@@ -71,7 +71,7 @@ rmdir /S /Q program
 rmdir /S /Q stuff
 rmdir /S /Q Output
 
-call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
+rem call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
 rem Program Files
 mkdir program
 copy /Y ..\toonz\build\Release\*.exe program
@@ -79,8 +79,8 @@ copy /Y ..\toonz\build\Release\*.dll program
 copy /Y ..\thirdparty\glew\glew-1.9.0\bin\64bit\*.dll program
 copy /Y ..\thirdparty\glut\3.7.6\lib\*.dll program
 copy /Y ..\thirdparty\libmypaint\dist\64\*.dll program
-rem copy /Y "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\14.28.29325\x64\Microsoft.VC142.CRT\*.dll" program
-rem copy /Y "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\14.28.29325\x64\Microsoft.VC142.OpenMP\*.dll" program
+copy /Y "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\14.28.29325\x64\Microsoft.VC142.CRT\*.dll" program
+copy /Y "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\14.28.29325\x64\Microsoft.VC142.OpenMP\*.dll" program
 copy /Y "C:\EDSDK\Windows\EDSDK_64\Dll\EDSDK.dll" program
 copy /Y "C:\libjpeg-turbo64\bin\turbojpeg.dll" program
 copy /Y "C:\opencv\build\x64\vc15\bin\opencv_world451.dll" program
@@ -95,18 +95,18 @@ if errorlevel 1 exit /b 1
 
 rem
 if DEFINED IS_32BIT (
-    call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsamd64_x86.bat"
+    rem call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsamd64_x86.bat"
     mkdir program\srv
     copy /Y ..\toonz\build_srv\Release\*.exe program\srv
     copy /Y ..\toonz\build_srv\Release\*.dll program\srv
-    rem copy /Y "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\14.28.29325\x86\Microsoft.VC142.CRT\*.dll" program\srv
+    copy /Y "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\14.28.29325\x86\Microsoft.VC142.CRT\*.dll" program\srv
     @echo on
     "C:\Qt\%QT_VER%.%QT_REV%\msvc2019\bin\windeployqt.exe" --release --dir program\srv program\srv\t32bitsrv.exe
     @echo off
     rem 25/11/2016 for unknown reasons, QtGui.dll is not copied to srv with windeployqt
     copy /Y "C:\Qt\%QT_VER%.%QT_REV%\msvc2019\bin\Qt5Gui.dll" program\srv\Qt5Gui.dll
     if errorlevel 1 exit /b 1
-    call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
+    rem call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
 )
 
 rem Stuff Dir
