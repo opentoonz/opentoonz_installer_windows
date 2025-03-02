@@ -97,6 +97,7 @@ mkdir program\srv
     @echo off
     rem 25/11/2016 for unknown reasons, QtGui.dll is not copied to srv with windeployqt
     copy /Y "C:\Qt\Qt%QT_VER%.%QT_REV%\%QT_VER%\msvc2015\bin\Qt5Gui.dll" program\srv\Qt5Gui.dll
+    copy /Y "C:\Qt\Qt%QT_VER%.%QT_REV%\%QT_VER%\msvc2015\bin\Qt5Widgets.dll" program\srv\Qt5Widgets.dll
     if errorlevel 1 exit /b 1
 )
 
