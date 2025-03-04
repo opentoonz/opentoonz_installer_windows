@@ -105,6 +105,7 @@ if DEFINED IS_32BIT (
     @echo off
     rem 25/11/2016 for unknown reasons, QtGui.dll is not copied to srv with windeployqt
     copy /Y "C:\Qt\%QT_VER%.%QT_REV%\msvc2019\bin\Qt5Gui.dll" program\srv\Qt5Gui.dll
+    copy /Y "C:\Qt\%QT_VER%.%QT_REV%\msvc2019\bin\Qt5Widgets.dll" program\srv\Qt5Widgets.dll
     if errorlevel 1 exit /b 1
     rem call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
 )
