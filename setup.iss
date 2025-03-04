@@ -6,13 +6,14 @@
 #define MyAppPublisher "DWANGO Co., Ltd."
 #define MyAppURL "https://opentoonz.github.io/"
 #define MyAppExeName "OpenToonz.exe"
+#define MyAppId "{DF519282-600D-4E03-9190-6046329B1CB4}"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 ; AppId={{D9A9B1A3-9370-4BE9-9C8F-7B52EEECB973} (until v1.2.1)
-AppId={{DF519282-600D-4E03-9190-6046329B1CB4}
+AppId={{#MyAppId}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -74,22 +75,30 @@ Name: {code:GetGeneralDir}; Flags: uninsneveruninstall
 en.GeneralDirPageTitle=Choose Destination Location for Stuff Folder
 en.GeneralDirPageDescription=Select the folder where setup will install the OpenToonz Stuff folder containing various setting files
 en.GeneralDirPageLabel=Install the OpenToonz Stuff folder to:
-en.OverwriteStuffCheckBoxLabel=Overwrite all setting files in the Stuff folder except user's personal settings 
+en.OverwriteStuffCheckBoxLabel=Overwrite all setting files in the Stuff folder except user's personal settings
+en.UninsOldVersionQuestion=Version %1 of OpenToonz is already installed. Is it OK to uninstall this old version to proceed?
+en.UninsOldVersionError=Failed to uninstall OpenToonz version %1. Please restart Windows and run setup again.
 
 jp.GeneralDirPageTitle=Stuffフォルダのインストール先の選択
 jp.GeneralDirPageDescription=各種設定が保存されるStuffフォルダのインストール先を選択してください
 jp.GeneralDirPageLabel=Stuffフォルダのインストール先:
 jp.OverwriteStuffCheckBoxLabel=ユーザーの個人設定以外のStuffフォルダ内の設定ファイルを全て上書きする
+jp.UninsOldVersionQuestion=過去のバージョン %1 のOpenToonzが既にインストールされています。アンインストールしてよろしいですか?     
+jp.UninsOldVersionError=OpenToonzバージョン %1 のアンインストールに失敗しました。 Windowsの再起動後にもう一度試していただくと、問題が解決する可能性があります。
 
 fr.GeneralDirPageTitle=Choose Destination Location for Stuff Folder
 fr.GeneralDirPageDescription=Select the folder where setup will install the OpenToonz Stuff folder containing various setting files
 fr.GeneralDirPageLabel=Install the OpenToonz Stuff folder to:
 fr.OverwriteStuffCheckBoxLabel=Overwrite all setting files in the Stuff folder except user's personal settings 
+fr.UninsOldVersionQuestion=Version %1 of OpenToonz is already installed. Is it OK to uninstall this old version to proceed?
+fr.UninsOldVersionError=Failed to uninstall OpenToonz version %1. Please restart Windows and run setup again.
 
 it.GeneralDirPageTitle=Choose Destination Location for Stuff Folder
 it.GeneralDirPageDescription=Select the folder where setup will install the OpenToonz Stuff folder containing various setting files
 it.GeneralDirPageLabel=Install the OpenToonz Stuff folder to:
 it.OverwriteStuffCheckBoxLabel=Overwrite all setting files in the Stuff folder except user's personal settings
+it.UninsOldVersionQuestion=Version %1 of OpenToonz is already installed. Is it OK to uninstall this old version to proceed?
+it.UninsOldVersionError=Failed to uninstall OpenToonz version %1. Please restart Windows and run setup again.
 
 [Code]
 var
@@ -123,3 +132,106 @@ function IsOverwiteStuffCheckBoxChecked: Boolean;
 begin
   Result := OverwriteStuffCheckBox.Checked;
 end;
+ 
+function GetNumber(var temp: String): Integer;
+var
+  part: String;
+  pos1: Integer;
+begin
+  if Length(temp) = 0 then
+  begin
+    Result := -1;
+    Exit;
+  end;
+    pos1 := Pos('.', temp);
+    if (pos1 = 0) then
+    begin
+      Result := StrToInt(temp);
+    temp := '';
+    end
+    else
+    begin
+    part := Copy(temp, 1, pos1 - 1);
+      temp := Copy(temp, pos1 + 1, Length(temp));
+      Result := StrToInt(part);
+    end;
+end;
+ 
+function CompareInner(var temp1, temp2: String): Integer;
+var
+  num1, num2: Integer;
+begin
+    num1 := GetNumber(temp1);
+  num2 := GetNumber(temp2);
+  if (num1 = -1) or (num2 = -1) then
+  begin
+    Result := 0;
+    Exit;
+  end;
+      if (num1 > num2) then
+      begin
+        Result := 1;
+      end
+      else if (num1 < num2) then
+      begin
+        Result := -1;
+      end
+      else
+      begin
+        Result := CompareInner(temp1, temp2);
+      end;
+end;
+ 
+function CompareVersion(str1, str2: String): Integer;
+var
+  temp1, temp2: String;
+begin
+    temp1 := str1;
+    temp2 := str2;
+    Result := CompareInner(temp1, temp2);
+end;
+ 
+function InitializeSetup(): Boolean;
+var
+  oldVersion: String;
+  uninstaller: String;
+  ErrorCode: Integer;
+begin
+  if RegKeyExists(HKEY_LOCAL_MACHINE,
+    'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppID}_is1') then
+  begin
+    RegQueryStringValue(HKEY_LOCAL_MACHINE,
+      'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppID}_is1',
+      'DisplayVersion', oldVersion);
+    if (CompareVersion(oldVersion, '{#MyAppVersion}') < 0) then
+    begin
+      if MsgBox(FmtMessage(CustomMessage('UninsOldVersionQuestion'), [oldVersion]),
+        mbConfirmation, MB_YESNO) = IDNO then
+      begin
+        Result := False;
+      end
+      else
+      begin
+          RegQueryStringValue(HKEY_LOCAL_MACHINE,
+            'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppID}_is1',
+            'UninstallString', uninstaller);
+          ShellExec('runas', uninstaller, '/SILENT', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
+          if (ErrorCode <> 0) then
+          begin
+            MsgBox(FmtMessage(CustomMessage('UninsOldVersionError'), [oldVersion]),
+             mbError, MB_OK );
+            Result := False;
+          end
+          else
+          begin
+            Result := True;
+          end;
+      end;
+    end;
+  end
+  else
+  begin
+    Result := True;
+  end;
+end;
+
