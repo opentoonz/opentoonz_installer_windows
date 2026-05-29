@@ -35,9 +35,18 @@ Name: "en"; MessagesFile: "compiler:Default.isl"
 Name: "jp"; MessagesFile: "compiler:Languages\Japanese.isl"; LicenseFile: "license_ja.rtf"
 Name: "fr"; MessagesFile: "compiler:Languages\French.isl"
 Name: "it"; MessagesFile: "compiler:Languages\Italian.isl"
+Name: "de"; MessagesFile: "compiler:Languages\German.isl"
+Name: "es"; MessagesFile: "compiler:Languages\Spanish.isl"
+Name: "cs"; MessagesFile: "compiler:Languages\Czech.isl"
+Name: "ru"; MessagesFile: "compiler:Languages\Russian.isl"
+Name: "ko"; MessagesFile: "compiler:Languages\Korean.isl"
+
+Name: "zh_CHS"; MessagesFile: "Languages\Unofficial\ChineseSimplified.isl"
+
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}";
+Name: "setapplanguage"; Description: "{cm:SetAppLanguageTask}"; GroupDescription: "{cm:LanguageSettings}"; Flags: checkedonce
 
 [Files]
 #include "files.iss"
@@ -81,15 +90,42 @@ jp.GeneralDirPageDescription=各種設定が保存されるStuffフォルダの�
 jp.GeneralDirPageLabel=Stuffフォルダのインストール先:
 jp.OverwriteStuffCheckBoxLabel=ユーザーの個人設定以外のStuffフォルダ内の設定ファイルを全て上書きする
 
-fr.GeneralDirPageTitle=Choose Destination Location for Stuff Folder
-fr.GeneralDirPageDescription=Select the folder where setup will install the OpenToonz Stuff folder containing various setting files
-fr.GeneralDirPageLabel=Install the OpenToonz Stuff folder to:
-fr.OverwriteStuffCheckBoxLabel=Overwrite all setting files in the Stuff folder except user's personal settings 
+zh_CHS.GeneralDirPageTitle=选择Stuff文件夹安装位置
+zh_CHS.GeneralDirPageDescription=请选择OpenToonz Stuff文件夹的安装目录，该文件夹包含程序的各种配置文件
+zh_CHS.GeneralDirPageLabel=Stuff文件夹安装路径:
+zh_CHS.OverwriteStuffCheckBoxLabel=覆盖Stuff文件夹中的所有配置文件（保留用户个人设置）
 
-it.GeneralDirPageTitle=Choose Destination Location for Stuff Folder
-it.GeneralDirPageDescription=Select the folder where setup will install the OpenToonz Stuff folder containing various setting files
-it.GeneralDirPageLabel=Install the OpenToonz Stuff folder to:
-it.OverwriteStuffCheckBoxLabel=Overwrite all setting files in the Stuff folder except user's personal settings
+; TODO: Add multilingual translations for the four custom messages
+
+en.LanguageSettings=Language Settings
+en.SetAppLanguageTask=Use English as the software language
+
+jp.LanguageSettings=言語設定
+jp.SetAppLanguageTask=ソフトウェアの言語を日本語に設定
+
+zh_CHS.LanguageSettings=语言设置
+zh_CHS.SetAppLanguageTask=将软件语言设置为简体中文
+
+fr.LanguageSettings=Paramètres de langue
+fr.SetAppLanguageTask=Utiliser le français comme langue du logiciel
+
+it.LanguageSettings=Impostazioni lingua
+it.SetAppLanguageTask=Usa l'italiano come lingua del software
+
+de.LanguageSettings=Spracheinstellungen
+de.SetAppLanguageTask=Deutsch als Software-Sprache verwenden
+
+es.LanguageSettings=Configuración de idioma
+es.SetAppLanguageTask=Usar español como idioma del software
+
+cs.LanguageSettings=Nastavení jazyka
+cs.SetAppLanguageTask=Použít češtinu jako jazyk softwaru
+
+ru.LanguageSettings=Языковые настройки
+ru.SetAppLanguageTask=Использовать русский как язык программного обеспечения
+
+ko.LanguageSettings=언어 설정
+ko.SetAppLanguageTask=소프트웨어 언어로 한국어 사용
 
 [Code]
 var
@@ -122,4 +158,42 @@ end;
 function IsOverwiteStuffCheckBoxChecked: Boolean;
 begin
   Result := OverwriteStuffCheckBox.Checked;
+end;
+
+// Set App Language Task
+procedure SetAppLanguage;
+var
+  LanguageName: string;
+  PreferencesDir: string;
+  PreferencesFile: string;
+  UserName: string;
+begin
+  UserName := GetUserNameString();
+  PreferencesDir := AddBackslash(GetGeneralDir('')) + 'profiles\layouts\settings.' + UserName;
+  PreferencesFile := PreferencesDir + '\preferences.ini';
+  
+  ForceDirectories(ExtractFileDir(PreferencesFile));
+  
+  case ActiveLanguage of
+    'jp': LanguageName := '\x65e5\x672c\x8a9e'; // 日本語
+    'zh_CHS': LanguageName := '\x4e2d\x6587'; // 中文
+    'fr': LanguageName := 'Fran\xe7\x61is'; // Français
+    'it': LanguageName := 'Italiano'; // Italiano
+    'de': LanguageName := 'Deutsch'; // Deutsch
+    'es': LanguageName := 'Espa\xf1ol'; // Español
+    'cs': LanguageName := '\x10c\x65\x161tina'; // Čeština
+    'ru': LanguageName := '\x420\x443\x441\x441\x43a\x438\x439'; // Русский
+    'ko': LanguageName := '\xd55c\xad6d\xc5b4'; // 한국어
+  else
+    LanguageName := 'English';
+  end;
+  
+  SetIniString('General', 'CurrentLanguageName', LanguageName, PreferencesFile);
+end;
+
+procedure CurStepChanged(CurStep: TSetupStep);
+begin
+  if CurStep = ssPostInstall then
+    if IsTaskSelected('setapplanguage') then
+      SetAppLanguage;
 end;
