@@ -35,9 +35,9 @@ mkdir -p build
 pushd build
 @echo on
 if DEFINED WITH_WINTAB (
-    cmake ../sources -G "Visual Studio 16 2019" -Ax64 -DQT_PATH="C:/Qt/%QT_VER%.%QT_REV%_wintab/msvc2019_64" -DOpenCV_DIR="C:/opencv/build" -DBOOST_ROOT="C:/boost/boost_1_75_0" -DWITH_CANON=ON -DWITH_WINTAB=ON
+    cmake ../sources -G "Visual Studio 16 2019" -Ax64 -DQT_PATH="C:/Qt/%QT_VER%.%QT_REV%_wintab/msvc2019_64" -DOpenCV_DIR="C:/opencv/build" -DBOOST_ROOT="C:/boost/boost_1_75_0" -DWITH_CANON=ON -DWITH_TRANSLATION=ON -DWITH_WINTAB=ON
 ) ELSE (
-    cmake ../sources -G "Visual Studio 16 2019" -Ax64 -DQT_PATH="C:/Qt/%QT_VER%.%QT_REV%/msvc2019_64" -DOpenCV_DIR="C:/opencv/build" -DBOOST_ROOT="C:/boost/boost_1_75_0" -DWITH_CANON=ON
+    cmake ../sources -G "Visual Studio 16 2019" -Ax64 -DQT_PATH="C:/Qt/%QT_VER%.%QT_REV%/msvc2019_64" -DOpenCV_DIR="C:/opencv/build" -DBOOST_ROOT="C:/boost/boost_1_75_0" -DWITH_CANON=ON -DWITH_TRANSLATION=ON
 )
 rem cmake --build . --config Release
 @echo off
